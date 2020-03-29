@@ -5,9 +5,12 @@
   "author": "William Franklin <wilfrank84@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "test": "jest",
+    "test:staged": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.4",
     "@types/node": "^13.9.5",
     "@typescript-eslint/eslint-plugin": "2",
     "commitizen": "^4.0.3",
@@ -18,7 +21,9 @@
     "eslint-plugin-promise": "4",
     "eslint-plugin-standard": "4",
     "husky": "^4.2.3",
+    "jest": "^25.2.3",
     "lint-staged": "^10.0.10",
+    "ts-jest": "^25.2.1",
     "typescript": "^3.8.3"
   },
   "config": {
