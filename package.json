@@ -3,5 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "William Franklin <wilfrank84@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "commit": "git-cz"
+  },
+  "devDependencies": {
+    "commitizen": "^4.0.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
