@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "commit": "git-cz",
-    "test": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests --watch",
     "test:staged": "jest --passWithNoTests"
   },
   "devDependencies": {
