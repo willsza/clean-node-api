@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "commit": "git-cz",
-    "test": "jest --passWithNoTest",
-    "test:staged": "jest --passWithNoTest"
+    "test": "jest --passWithNoTests",
+    "test:staged": "jest --passWithNoTests"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
