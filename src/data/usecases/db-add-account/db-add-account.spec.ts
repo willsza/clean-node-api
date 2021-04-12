@@ -1,5 +1,5 @@
 import { AddAccountModel } from '../../../domain/usecases/add-account'
-import { DbAddAccount } from './add-account'
+import { DbAddAccount } from './db-add-account'
 
 describe('DBAddAccount Usecase', () => {
   test('should call Encrypter with correct value', async () => {
