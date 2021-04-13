@@ -7,6 +7,16 @@ interface SubTypes {
   encrypterStub: Encrypter
 }
 
+const makeAddAccount = (): AddAccountModel => {
+  const addAccount: AddAccountModel = {
+    name: 'valid_name',
+    email: 'valid_email',
+    password: 'valid_password'
+  }
+
+  return addAccount
+}
+
 const makeEncrypter = (): Encrypter => {
   class EncrypterStub {
     async encrypt (value: string): Promise<string> {
@@ -31,13 +41,18 @@ describe('DBAddAccount Usecase', () => {
   test('should call Encrypter with correct value', async () => {
     const { sut, encrypterStub } = makeSut()
     const encryptSpy = jest.spyOn(encrypterStub, 'encrypt')
-    const account: AddAccountModel = {
-      name: 'valid_name',
-      email: 'valid_email',
-      password: 'valid_password'
-    }
 
-    await sut.add(account)
+    await sut.add(makeAddAccount())
     expect(encryptSpy).toHaveBeenCalledWith('valid_password')
+  })
+
+  test('should DbAddAccount give it back the throws', async () => {
+    const { sut, encrypterStub } = makeSut()
+    const error: Promise<string> = new Promise((resolve, reject) => reject(new Error('')))
+
+    jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(error)
+
+    const promise = sut.add(makeAddAccount())
+    await expect(promise).rejects.toThrow()
   })
 })
