@@ -84,4 +84,14 @@ describe('DBAddAccount Usecase', () => {
     const params = { ...makeAddAccount(), password: 'hashed_password' }
     expect(addSpy).toHaveBeenCalledWith(params)
   })
+
+  test('should AddAccountRepository give it back the throws', async () => {
+    const { sut, addAccountRepositoryStub } = makeSut()
+    const error: Promise<AccountModel> = new Promise((resolve, reject) => reject(new Error('')))
+
+    jest.spyOn(addAccountRepositoryStub, 'add').mockReturnValueOnce(error)
+
+    const promise = sut.add(makeAddAccount())
+    await expect(promise).rejects.toThrow()
+  })
 })
