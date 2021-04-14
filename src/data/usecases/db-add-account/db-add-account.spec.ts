@@ -94,4 +94,11 @@ describe('DBAddAccount Usecase', () => {
     const promise = sut.add(makeAddAccount())
     await expect(promise).rejects.toThrow()
   })
+
+  test('should return account on success', async () => {
+    const { sut } = makeSut()
+    const account = await sut.add(makeAddAccount())
+    const response = { ...makeAddAccount(), id: 'valid_id', password: 'hashed_password' }
+    expect(account).toEqual(response)
+  })
 })
