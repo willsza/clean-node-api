@@ -17,6 +17,16 @@ const makeAddAccount = (): AddAccountModel => {
   return addAccount
 }
 
+const makeAccount = (): AccountModel => {
+  const account: AccountModel = {
+    ...makeAddAccount(),
+    id: 'valid_id',
+    password: 'hashed_password'
+  }
+
+  return account
+}
+
 const makeEncrypter = (): Encrypter => {
   class EncrypterStub {
     async encrypt (value: string): Promise<string> {
@@ -30,13 +40,7 @@ const makeEncrypter = (): Encrypter => {
 const makeAddAccountRespository = (): AddAccountRepository => {
   class AddAccountRepositoryStub {
     async add (addAccount: AddAccountModel): Promise<AccountModel> {
-      const fakeAccount = {
-        id: 'valid_id',
-        name: 'valid_name',
-        email: 'valid_email',
-        password: 'valid_password'
-      }
-
+      const fakeAccount = makeAccount()
       return new Promise(resolve => resolve(fakeAccount))
     }
   }
@@ -98,7 +102,6 @@ describe('DBAddAccount Usecase', () => {
   test('should return account on success', async () => {
     const { sut } = makeSut()
     const account = await sut.add(makeAddAccount())
-    const response = { ...makeAddAccount(), id: 'valid_id', password: 'hashed_password' }
-    expect(account).toEqual(response)
+    expect(account).toEqual(makeAccount())
   })
 })
