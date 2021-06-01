@@ -7,25 +7,17 @@ interface SubTypes {
   addAccountRepositoryStub: AddAccountRepository
 }
 
-const makeAddAccount = (): AddAccountModel => {
-  const addAccount: AddAccountModel = {
-    name: 'valid_name',
-    email: 'valid_email',
-    password: 'valid_password'
-  }
+const makeAddAccount = (): AddAccountModel => ({
+  name: 'valid_name',
+  email: 'valid_email',
+  password: 'valid_password'
+})
 
-  return addAccount
-}
-
-const makeAccount = (): AccountModel => {
-  const account: AccountModel = {
-    ...makeAddAccount(),
-    id: 'valid_id',
-    password: 'hashed_password'
-  }
-
-  return account
-}
+const makeAccount = (): AccountModel => ({
+  ...makeAddAccount(),
+  id: 'valid_id',
+  password: 'hashed_password'
+})
 
 const makeEncrypter = (): Encrypter => {
   class EncrypterStub {
